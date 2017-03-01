@@ -43,6 +43,76 @@
                 <li>订单确认</li>
             </ul>
         </div>
+        <div class="checkout-title">
+            <span>配送地址</span>
+        </div>
+        <div class="addr-list-wrap">
+            <div class="addr-list">
+                <ul>
+                    <li v-for="(address,index) in filteAddress" v-bind:class="{'check':addressIndex==index}"
+                        @click="addressIndex=index">
+                        <dl>
+                            <dt v-text="address.user.userName"></dt>
+                            <dd class="address" v-text="address.streetName"></dd>
+                            <dd class="tel" v-text="address.tel"></dd>
+                        </dl>
+                        <div class="addr-opration addr-edit">
+                            <a href="javascript:;" class="addr-edit-btn">
+                                <svg class="icon icon-edit"><use xlink:href="#icon-edit"></use></svg>
+                            </a>
+                        </div>
+                        <div class="addr-opration addr-del">
+                            <a href="javascript:;" class="addr-del-btn">
+                                <svg class="icon icon-del"><use xlink:href="#icon-del"></use></svg>
+                            </a>
+                        </div>
+                        <div class="addr-opration addr-set-default" v-show="!address.isDefault">
+                            <a href="javascript:;" class="addr-set-default-btn" @click="setDefaultAddress(address.addressId)"><i>设为默认</i></a>
+                        </div>
+                        <div class="addr-opration addr-default" v-show="address.isDefault">默认地址</div>
+
+                    </li>
+                    <li class="addr-new">
+                        <div class="add-new-inner">
+                            <i class="icon-add">
+                                <svg class="icon icon-add"><use xlink:href="#icon-add"></use></svg>
+                            </i>
+                            <p>添加新地址</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="shipping-addr-more">
+                <a class="addr-more-btn up-down-btn" href="javascript:;" @click="limitNum=addressList.length">
+                    more
+                    <i class="i-up-down">
+                        <i class="i-up-down-l"></i>
+                        <i class="i-up-down-r"></i>
+                    </i>
+                </a>
+            </div>
+        </div>
+        <div class="checkout-title">
+            <span>配送方式</span>
+        </div>
+        <div class="shipping-method-wrap">
+            <div class="shipping-method">
+                <ul>
+                    <li v-bind:class="{'check':shippingMethod==1}" @click="shippingMethod=1">
+                        <div class="name">标准配送</div>
+                        <div class="price">Free</div>
+                    </li>
+                    <li v-bind:class="{'check':shippingMethod==2}" @click="shippingMethod=2">
+                        <div class="name">高级配送</div>
+                        <div class="price">180</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="next-btn-wrap">
+            <a href="javascript:;" class="btn btn--red">下一步</a>
+        </div>
 
 
     </div>
@@ -50,7 +120,9 @@
 </div>
 
 
-
+<script src="lib/vue2.js"></script>
+<script src="lib/vue-resource.min.js"></script>
+<script src="js/address.js"></script>
 
 
 
