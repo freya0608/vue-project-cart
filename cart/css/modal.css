@@ -1,3 +1,9 @@
+.md-show{
+    opacity: 1;
+}
+.md-hidden{
+    opacity: 0;
+}
 .md-modal {
     position: fixed;
     top: 50%;

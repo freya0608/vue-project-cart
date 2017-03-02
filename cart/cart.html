@@ -104,7 +104,7 @@
                             </div>
                             <div class="cart-tab-5">
                                 <div class="cart-item-opration">
-                                    <a href="javascript:;" class="item-edit-btn" @click="showModal=true">
+                                    <a href="javascript:;" class="item-edit-btn" @click="delConfirm(product)">
                                         <svg class="icon icon-del"><use xlink:href="#icon-del"></use></svg>
                                     </a>
                                 </div>
@@ -153,7 +153,7 @@
                     <p id="cusLanInfo" >你确认删除此订单信息吗?</p>
                 </div>
                 <div class="btn-wrap col-2">
-                    <button class="btn btn--m" id="btnModalConfirm" @click="delConform(item)">Yes</button>
+                    <button class="btn btn--m" id="btnModalConfirm" @click="delCurrentProduct">Yes</button>
                     <button class="btn btn--m btn--red" id="btnModalCancel" @click="showModal=false;">No</button>
                 </div>
             </div>
