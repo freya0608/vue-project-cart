@@ -52,7 +52,7 @@
                     <li v-for="(address,index) in filterAddress" v-bind:class="{'check':addressIndex==index}"
                         @click="addressIndex=index">
                         <dl>
-                            <dt v-text="address.user.userName"></dt>
+                            <dt v-text="address.userName"></dt>
                             <dd class="address" v-text="address.streetName"></dd>
                             <dd class="tel" v-text="address.tel"></dd>
                         </dl>
