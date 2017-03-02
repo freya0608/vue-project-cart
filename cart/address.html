@@ -49,7 +49,7 @@
         <div class="addr-list-wrap">
             <div class="addr-list">
                 <ul>
-                    <li v-for="(address,index) in filteAddress" v-bind:class="{'check':addressIndex==index}"
+                    <li v-for="(address,index) in filterAddress" v-bind:class="{'check':addressIndex==index}"
                         @click="addressIndex=index">
                         <dl>
                             <dt v-text="address.user.userName"></dt>

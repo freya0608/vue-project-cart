@@ -15,7 +15,7 @@ var vm = new Vue({
 		});
 	},
 	computed: {
-		filteAddress:function (){
+		filterAddress:function (){
 			return this.addressList.slice(0,this.limitNum)
 		}
 	},
@@ -23,8 +23,8 @@ var vm = new Vue({
 		queryAddress: function () {
 			var _this = this;
 			let a= 3;
-			this.$http.get("data/address.json").then(function (response) {
-				var res = response.data;
+			this.$http.post("data/address.json").then(function (response) {
+				var res = response.body;
 				if(res.status=="0"){
 					_this.addressList = res.result;
 				}

@@ -4,7 +4,7 @@
 window.vm = new Vue({
     el:'#app',
     data:{
-        showModal:false,
+        showModal:true,
         productList:[],
         totalMoney:0,
         checkAll:false,
@@ -16,14 +16,14 @@ window.vm = new Vue({
     },
     filters:{
         formatMoney:function (value, quantity) {
-            if(!quantity)quantity++;
+            if(!quantity) quantity++;
             return "￥"+(value*quantity).toFixed(2)+"元";
         }
     },
     methods:{
         cartView:function () {
-            $http.get("data/cartData.json").then(function(response) {
-                var res = response.data;
+            this.$http.post("data/cartData.json").then(function(response) {
+                var res = response.body;
                 if (res && res.status == '1') {
                     this.productList = res.result.list;
                     this.calcTotalMoney();
@@ -66,13 +66,14 @@ window.vm = new Vue({
             }
         },
         calcTotalMoney:function () {
-            let totalMoney = 0;
-            this.productList.forEach(function (item) {
+            var _this = this;
+            _this.totalMoney = 0;
+            this.productList.forEach(function (item,index) {
                 if(item.checked){
-                    totalMoney += item.productPrice+item.productQuantity;
+                    console.log(item.productPrice);
+                    _this.totalMoney += item.productPrice*item.productQuantity;
                 }
             });
-            this.totalMoney = totalMoney;
         },
         changeMoney:function (product, way) {
             if(way>0){
@@ -90,11 +91,14 @@ window.vm = new Vue({
             this.currentProduct = product;
         },
         delCurrentProduct:function () {
-            this.showModal = false;
             var index = this.productList.indexOf(this.currentProduct);
             this.productList.splice(index,1);
+            this.showModal = false;
         }
     }
+});
+Vue.filter("money",function (value, type) {
+    return "￥"+ value.toFixed(2)+type;
 });
 
 
