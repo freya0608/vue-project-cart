@@ -4,7 +4,7 @@
 window.vm = new Vue({
     el:'#app',
     data:{
-        showModal:true,
+        showModal:false,
         productList:[],
         totalMoney:0,
         checkAll:false,
@@ -12,7 +12,10 @@ window.vm = new Vue({
     },
     mounted:function () {
         // var _this = this;
-        this.cartView();
+        this.$nextTick(function () {
+            this.cartView();
+        });
+
     },
     filters:{
         formatMoney:function (value, quantity) {
